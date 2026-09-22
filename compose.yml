@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    image: ghcr.io/thwena/disc-golf-tracker:dev
+    restart: unless-stopped
+    environment:
+      DGT_ENVIRONMENT: ${DGT_ENVIRONMENT:-production}
+      DGT_SECRET_KEY: ${DGT_SECRET_KEY:?Set DGT_SECRET_KEY in .env}
+      DGT_BOOTSTRAP_TOKEN: ${DGT_BOOTSTRAP_TOKEN:-}
+      DGT_DATA_DIR: /data
+      DGT_ACCESS_TOKEN_MINUTES: ${DGT_ACCESS_TOKEN_MINUTES:-60}
+      DGT_TRUSTED_HOSTS: ${DGT_TRUSTED_HOSTS:-localhost,127.0.0.1}
+    ports:
+      - "8080:8080"
+    volumes:
+      - disc-golf-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/api/health/ready')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  disc-golf-data:
