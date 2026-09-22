@@ -1,7 +1,6 @@
 services:
   app:
-    build: .
-    image: ghcr.io/thwena/disc-golf-tracker:dev
+    image: ghcr.io/thwena/disc-golf-tracker:${DGT_IMAGE_TAG:-edge}
     restart: unless-stopped
     environment:
       DGT_ENVIRONMENT: ${DGT_ENVIRONMENT:-production}

@@ -7,7 +7,7 @@
 - [x] Health/readiness endpoints
 - [x] One-time local administrator bootstrap, password login, and current-user endpoint
 - [x] Responsive installable PWA shell
-- [ ] CI and public image release workflow
+- [x] CI and public image release workflow
 - [ ] Refresh-token/session revocation and invitation-controlled registration
 - [ ] Optional standards-based OIDC
 

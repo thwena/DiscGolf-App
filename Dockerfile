@@ -12,6 +12,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     DGT_DATA_DIR=/data \
     DGT_STATIC_DIR=/app/static
 WORKDIR /app
+LABEL org.opencontainers.image.title="Disc Golf Tracker" \
+      org.opencontainers.image.description="Self-hosted disc golf scoring, inventory, and flight tracker" \
+      org.opencontainers.image.source="https://github.com/thwena/DiscGolf-App"
 RUN addgroup --system --gid 10001 app && adduser --system --uid 10001 --ingroup app app \
     && mkdir -p /data /app/static && chown -R app:app /data /app
 COPY pyproject.toml ./
